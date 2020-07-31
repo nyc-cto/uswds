@@ -4,20 +4,6 @@
 
 exports.buttonFunc = function (config) {
   return `
-    //css & styling attributes
-    const inverse = config.inverse ? true : false;
-    const disabled = config.disabled ? true : false;
-    const outline = config.outline ? true : false; 
-    //is unstyled needed if we are defining how we want a button(Example: if config object is empty button will be unstyled)
-    const unstyled = config ? true : false;
-    
-    //button function atributes
-    const onFocus = config.onFocus ? true : false; 
-    const onMouseEnter = config.onMouseEnter ? true : false;
-    const onMouseLeave = config.onMouseLeave ? true : false;  
-    const onClick = config.onClick ? true : false; 
-  
-  
     //functions
     function hoverOn(e) {
       e.target.style.background = "green";
@@ -30,15 +16,14 @@ exports.buttonFunc = function (config) {
     }
     
       <Button
-        onClick = {${config.onClick}}
-        onMouseEnter = {${config.onMouseEnter}}
-        onMouseLeave = {${config.onMouseLeave}}
-        onFocus = {${config.onFocus}}
-        inverse = {${config.inverse}}
-        disabled = {${config.disabled}}
-        outline = {${config.outline}}
-        unstyled = {${config.unstyled}}
-        
-      />
-      `;
+        onClick = {${config.onClick ? config.onClick : false}}
+        onMouseEnter = {${config.onMouseEnter ? config.onMouseEnter : false}}
+        onMouseLeave = {${config.onMouseLeave ? config.onMouseLeave : false}}
+        onFocus = {${config.onFocus ? config.onFocus : false}}
+        inverse = {${config.inverse ? config.inverse : false}}
+        disabled = {${config.disabled ? config.disabled : false}}
+        outline = {${config.outline ? config.outline : false}}
+        unstyled = {${config.unstyled ? config.unstyled : false}}
+  
+      />`;
 };
