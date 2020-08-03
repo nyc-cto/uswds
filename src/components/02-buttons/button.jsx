@@ -20,9 +20,23 @@
   submit: The button submits the form data to the server (default type if not specifed). 
   button: Used for events (onclick, onfocus, onhover)
   reset: reset controls to their initial values
-   ----------------------------
+  ----------------------------
   value
   Defines the value associated with the button’s name when it’s submitted with the form data. This value is passed to the server in params when the form is submitted.
+  ------------------------------
+
+
+  Config usage
+  ******************************
+  const config = {
+    class: "usa-button--secondary",
+    autofocus: "true",
+    disabled: "false",
+    name: "Button",
+    type: "submit",
+    value: "",
+    innerText ="Button"
+  }
   */
 }
 exports.render = function(config) {
