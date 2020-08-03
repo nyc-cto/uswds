@@ -24,10 +24,10 @@
   value
   Defines the value associated with the button’s name when it’s submitted with the form data. This value is passed to the server in params when the form is submitted.
   ------------------------------
-
-
   Config usage
   ******************************
+  single class use
+  ------------------------------
   const config = {
     class: "usa-button--secondary",
     autofocus: "true",
@@ -37,6 +37,18 @@
     value: "",
     innerText ="Button"
   }
+  multiple class use
+  ------------------------------
+    const config = {
+    class: "usa-button--outline usa-button--inverse",
+    autofocus: "true",
+    disabled: "false",
+    name: "Button",
+    type: "submit",
+    value: "",
+    innerText ="Button"
+  }
+  Avaible classes
   */
 }
 exports.render = function(config) {
