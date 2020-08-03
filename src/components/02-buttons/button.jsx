@@ -24,25 +24,25 @@
   value
   Defines the value associated with the button’s name when it’s submitted with the form data. This value is passed to the server in params when the form is submitted.
   ------------------------------
-  Config usage
+  Setting Up Config 
   ******************************
-  single class use
+  single class usage
   ------------------------------
   const config = {
     class: "usa-button--secondary",
-    autofocus: "true",
-    disabled: "false",
+    autofocus: "true",  //boolean value only
+    disabled: "false",  //boolean value only
     name: "Button",
     type: "submit",
     value: "",
     innerText ="Button"
   }
-  multiple class use
+  multiple class usage
   ------------------------------
     const config = {
     class: "usa-button--outline usa-button--inverse",
-    autofocus: "true",
-    disabled: "false",
+    autofocus: "true",  //boolean value only
+    disabled: "false",  //boolean value only
     name: "Button",
     type: "submit",
     value: "",
