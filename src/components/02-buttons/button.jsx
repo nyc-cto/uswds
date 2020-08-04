@@ -30,7 +30,7 @@
   single class usage
   @example 
   const config = {
-    class: "--secondary",
+    class: "usa-button--secondary",
     autofocus: "true",  //boolean value only
     disabled: "false",  //boolean value only
     name: "Button",
@@ -40,7 +40,7 @@
   }
   @returns
   <button
-      class="uswds-button--secondary"
+      class="usa-button usa-button--secondary"
       autofocus=true
       disabled=true
       name="Button"
@@ -53,7 +53,7 @@
   multiple class usage
   @example
     const config = {
-    class: "--outline usa-button--inverse",
+    class: "usa-button--outline usa-button--inverse",
     autofocus: "true",  //boolean value only
     disabled: "false",  //boolean value only
     name: "Button",
@@ -63,7 +63,7 @@
   }
   @returns
   <button
-      class="uswds-button--outline usa-button--inverse"
+      class="usa-button usa-button--outline usa-button--inverse"
       autofocus=true
       disabled=true
       name="Button"
@@ -77,7 +77,7 @@
 exports.render = function(config) {
   return (
     <button
-      class={`uswds-button${config.class}`}
+      class={`usa-button ${config.class}`}
       autofocus={config.autofocus}
       disabled={config.disabled}
       name={config.name}
