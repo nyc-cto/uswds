@@ -74,7 +74,7 @@
     </button>
   */
 }
-exports.render = function(config) {
+exports.Button = function(config) {
   return (
     <button
       class={`usa-button ${config.class}`}
