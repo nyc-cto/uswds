@@ -2,8 +2,8 @@
   /**  
   ATTRIBUTES FOR THE BUTTON
   ******************************
-@type { Function } Button
-@param {Object} config [description]  
+  @type { Function } Button
+  @param {Object} config [description]  
   @property {string} class
    - This will specify what CSS the button will get from USWDS' CSS files.
   The base class is usa-button with additions coming from the config.class property passed in
