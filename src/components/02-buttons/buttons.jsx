@@ -16,8 +16,8 @@
  *   // Single class usage
  *   const config = {
  *     class: "usa-button--secondary",
- *     autofocus: "true", //boolean value only
- *     disabled: "false", //boolean value only
+ *     autofocus: true, //boolean value only
+ *     disabled: false, //boolean value only
  *     name: "Button",
  *     type: "submit",
  *     value: "",
@@ -27,8 +27,8 @@
  *   // Multiple class usage
  *   const config = {
  *      class: "usa-button--outline usa-button--inverse",
- *      autofocus: "true", //boolean value only
- *      disabled: "false", //boolean value only
+ *      autofocus: true, //boolean value only
+ *      disabled: false, //boolean value only
  *      name: "Button",
  *      type: "submit",
  *      value: "",
@@ -36,7 +36,7 @@
  *   }
  * @returns {HTMLButtonElement} The JSX HTML button
  */
-exports.Button = function(config) {
+exports.Buttons = function (config) {
   return (
     <button
       class={`usa-button ${config.class}`}
