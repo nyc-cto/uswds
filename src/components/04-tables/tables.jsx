@@ -29,13 +29,13 @@ function createRow(config) {
     //split arrays per element into table html style <tr> <td> data </td> </tr>
     for (const rowsArray of config.data[rows]) {
       if (rowsArray == config.data[rows][config.row - 1]) {
-        replaceData = `<td scope='row'>${rowsArray}</td> </tr>`;
+        replaceData = `<td scope='row'>${rowsArray}</td> \n</tr>`;
         tableData.push(replaceData);
       } else {
         replaceData = `<td scope='row'>${rowsArray}</td>`;
         //if row data is at element 0 create new table row and header tag
         if (rowsArray == config.data[rows][0]) {
-          replaceData = `<tr>  <th scope='row'>${rowsArray}</th>`;
+          replaceData = `<tr>  \n<th scope='row'>${rowsArray}</th>`;
         }
         tableData.push(replaceData);
       }
