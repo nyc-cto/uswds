@@ -1,4 +1,4 @@
-let config = {
+const config = {
   class: "usa-table--borderless"
   header: ["Column1", "Column2", "Coulmn3"],
   row: 3,
@@ -7,7 +7,8 @@ let config = {
     row1: ["Row 1 Column 1", "Row 1 Column 2 ", "Row 1 Column 3"],
     row2: ["Row 2 Column 1", "Row 2 Column 2", "Row 2 Column 3"],
     row3: ["Row 3 Column 1", "Row 3 Column 2", "Row 3 Column 3"],
-  }
+  },
+  id: "tableID",
 };
 
 //createHeader will generate the columns
@@ -23,7 +24,7 @@ function createHeader(config) {
 function createRow(config) {
   let tableData = [];
   let replaceData;
-  //take data object and seperate each array
+  //take data object and seperate each row(array)
   for (const rows in config.data) {
     //split arrays per element into table html style <tr> <td> data </td> </tr>
     for (const rowsArray of config.data[rows]) {
@@ -32,7 +33,7 @@ function createRow(config) {
         tableData.push(replaceData);
       } else {
         replaceData = `<td scope='row'>${rowsArray}</td>`;
-        //if row data is at element 0 create new table row tag
+        //if row data is at element 0 create new table row and header tag
         if (rowsArray == config.data[rows][0]) {
           replaceData = `<tr>  <th scope='row'>${rowsArray}</th>`;
         }
@@ -45,7 +46,7 @@ function createRow(config) {
 
 exports.Table = function (config) {
   return (
-    <table class={`usa-table ${config.class}`}>
+    <table id={`${config.tableID}`} class={`usa-table ${config.class}`}>
       <caption>{config.caption}</caption>
       <thead>
         <tr>{createHeader(config)}</tr>
