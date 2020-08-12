@@ -1,14 +1,14 @@
 const config = {
-  class: "usa-table--borderless"
+  class: "usa-table--borderless",
   header: ["Column1", "Column2", "Coulmn3"],
   row: 3,
   name: "Table",
   data: {
     row1: ["Row 1 Column 1", "Row 1 Column 2 ", "Row 1 Column 3"],
     row2: ["Row 2 Column 1", "Row 2 Column 2", "Row 2 Column 3"],
-    row3: ["Row 3 Column 1", "Row 3 Column 2", "Row 3 Column 3"],
+    row3: ["Row 3 Column 1", "Row 3 Column 2", "Row 3 Column 3"]
   },
-  id: "tableID",
+  id: "tableID"
 };
 
 //createHeader will generate the columns
@@ -44,14 +44,16 @@ function createRow(config) {
   return tableData.join("\n");
 }
 
-exports.Table = function (config) {
+exports.Table = function(config) {
   return (
     <table id={`${config.tableID}`} class={`usa-table ${config.class}`}>
       <caption>{config.caption}</caption>
+
       <thead>
         <tr>{createHeader(config)}</tr>
       </thead>
+
       <tbody>{createRow(config)}</tbody>
     </table>
   );
-}
+};
