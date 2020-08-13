@@ -29,8 +29,9 @@
  *         content: "Bearing Arms",
  *       },
  *     ],
- *   }
- * @returns {Accordion} The JSX Accordion
+ *   };
+ *   Accordion(config);
+ * @returns {Accordion} The Accordion
  */
 exports.Accordion = function(config) {
   const variant = config.variant ? `usa-accordion--${config.variant}` : "";
