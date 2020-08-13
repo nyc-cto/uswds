@@ -1,102 +1,44 @@
 /**
- * ATTRIBUTES FOR TABLES
- * *********************
- * @type  {Function} Tables 
- * @param {Object} config [description]
- * @property {string} class 
- * -This will specify wheather the table is boarder or borderless. Leave class empty for boarders.
- * ----------------------------
- * @property {array} header
- * -Takes an array of strings to name each column header the given name.
- * ----------------------------
- * @property {integer} row
- * -Specify how many rows will be used in table.
- * ----------------------------
- * @property {object} data
- * -defines a set of arrays for row text.
- * @inner {array} row
- * -Takes an array of strings to place text inside of each row cell.
- * ---------------------------
- * @property {string} id
- * -Table id name.
- * Setting Up Config 
-  ******************************
-  boarderlesss usage
-  @example 
-  const config = {
-  class: "usa-table--borderless",
-  header: ["Column1", "Column2", "Coulmn3"],
-  row: 3,
-  name: "Table",
-  data: {
-    row1: ["Row 1 Column 1", "Row 1 Column 2 ", "Row 1 Column 3"],
-    row2: ["Row 2 Column 1", "Row 2 Column 2", "Row 2 Column 3"],
-    row3: ["Row 3 Column 1", "Row 3 Column 2", "Row 3 Column 3"]
-  },
-  id: "tableID"
-};
-  @returns
-    <table id="tableID" class="usa-table usa-table--borderless">
-      <caption>{config.caption}</caption>
-      <thead>
-        <tr><th scope='col'>header</th>
-        <th scope='col'>header2</th>
-        <th scope='col'>header3</th> </tr>
-      </thead>
-      <tbody>
-        <tr> 
-          <th scope='row'>data1</th>
-          <td scope='row'>data2</td>
-          <td scope='row'>data3</td>
-        </tr>
-        <tr> 
-          <th scope='row'>data4</th>
-          <td scope='row'>data5</td>
-          <td scope='row'>data6</td>
-        </tr>
-        <tr> 
-          <th scope='row'>data7</th>
-          <td scope='row'>data8</td>
-          <td scope='row'>data9</td>
-        </tr>
-      </tbody>
-    </table>
+ * JSX Tables Component Attributes
+ * @function Tables
+ * @param {Object} config The configuration object for table attributes
+ * @property {string} config.name  - The name of the table.
+ * @property {string} config.class - The classes inherited from the USWDS CSS files. The default class is `usa-table` and additions can be appended.
+ * @property {Array} config.header - The array of data for the column header.
+ * @property {Array} config.row    - The array string array to define each row and its corresponding cell.
+ * @property {string} config.id    - The ID of the table
+ * @example
+ *   const config = {
+ *     name: "Table",
+ *     class: "usa-table--borderless",
+ *     header: [
+ *       "Document title",
+ *       "Description",
+ *       "Year"
+ *     ],
+ *     row: [
+ *       [
+ *         "Declaration of Independence",
+ *         "Statement adopted by the...",
+ *         "1776",
+ *       ],
+ *       [
+ *         "Bill of Rights",
+ *         "The first ten amendments of the U.S...",
+ *         "1791"
+ *       ],
+ *       [
+ *         "Row-n Column-1",
+ *         "Row-n Column-2",
+ *         "Row-n Column-3"
+ *       ],
+ *     ],
+ *     id: "813"
+ *   };
+ *   Tables(config)
+ * @returns {Tables} The Tables
  */
-
-//createHeader will generate the columns
-function createHeader(config) {
-  let tableHeader = [];
-  for (let i = 0; i < config.header.length; i++) {
-    let replaceHeader = `<th scope='col'>${config.header[i]}</th>`;
-    tableHeader.push(replaceHeader);
-  }
-  return tableHeader.join("\n");
-}
-//createRow will generate 1 or more rows depending on config specified
-function createRow(config) {
-  let tableData = [];
-  let replaceData;
-  //take data object and seperate each row(array)
-  for (const rows in config.data) {
-    //split arrays per element into table html style <tr> <td> data </td> </tr>
-    for (const rowsArray of config.data[rows]) {
-      if (rowsArray == config.data[rows][config.row - 1]) {
-        replaceData = `<td scope='row'>${rowsArray}</td> \n</tr>`;
-        tableData.push(replaceData);
-      } else {
-        replaceData = `<td scope='row'>${rowsArray}</td>`;
-        //if row data is at element 0 create new table row and header tag
-        if (rowsArray == config.data[rows][0]) {
-          replaceData = `<tr>  \n<th scope='row'>${rowsArray}</th>`;
-        }
-        tableData.push(replaceData);
-      }
-    }
-  }
-  return tableData.join("\n");
-}
-
-exports.Table = function(config) {
+exports.Tables = function(config) {
   return (
     <table id={`${config.tableID}`} class={`usa-table ${config.class}`}>
       <caption>{config.caption}</caption>
@@ -107,3 +49,30 @@ exports.Table = function(config) {
     </table>
   );
 };
+
+// createHeader will generate the columns
+function createHeader(config) {
+  let tableHeader = [];
+
+  for (let i = 0; i < config.header.length; i++) {
+    tableHeader.push(`<th scope='col'>${config.header[i]}</th>`);
+  }
+
+  return tableHeader.join("\n");
+}
+// createRow will generate 1 or more rows depending on config specified
+function createRow(config) {
+  let tableData = [];
+
+  for (let i = 0; i < config.row.length; i++) {
+    tableData.push("<tr>", `<th scope='row'>${config.row[i][0]}</th>`);
+
+    for (let j = 1; j < config.row[i].length; j++) {
+      tableData.push(`<td>${config.row[i][j]}</td>`);
+    }
+
+    tableData.push("</tr>");
+  }
+
+  return tableData.join("\n");
+}
