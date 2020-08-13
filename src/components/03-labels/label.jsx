@@ -14,7 +14,11 @@
  *     for: "submit"
  *     innerText: "Click here to submit your form: "
  *   }
- * @returns {HTMLLabelElement} The JSX HTML Label
+ * Label(config);
+ * @returns {HTMLLabelElement} The HTML Label
+ * <label class=`usa-label` for="submit">
+ *    Click here to submit your form: 
+ * </label>
  */
 
 exports.Label = function (config) {
