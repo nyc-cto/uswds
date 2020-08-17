@@ -1,10 +1,10 @@
 /**
  * JSX Alert Component Attributes
  * @function Alert
- * @param {Object} config - The configuration object for alert attributes
+ * @param {Object} config - The configuration object for alert attributes.
  * @property {string} config.class - The classes inherited from the USWDS CSS files. The default class is `usa-alert` and additions can be appended.
- * @property {string} config.headerText - The text to be displayed as the header for the alert, if its supposed to have one.
- * @property {string} config.innerText - The actual alert message text to be displayed in the body of the Alert element
+ * @property {string} config.headerText - The text to be displayed as the header for the alert.
+ * @property {string} config.innerText - The actual alert message text to be displayed in the body of the Alert element.
  * @example
  * const config = {
  *      class: "usa-alert--success",
@@ -21,22 +21,13 @@
  */
 
 exports.Alerts = function (config) {
-  let theHeader;
-  if (
-    //these 2 CSS classes aren't supposed to have a header
-    config.class.includes("usa-alert--slim") ||
-    config.class.includes("usa-alert--no-icon")
-  ) {
-    theHeader = null;
-  } else {
-    //any other class can have a header
-    theHeader = <h3 class="usa-alert__heading">{config.headerText}</h3>;
-  }
   return (
     <div class={`usa-alert ${config.class}`}>
       ::before
       <div class="usa-alert__body">
-        {theHeader}
+        {config.headerText && (
+          <h3 class="usa-alert__heading">{config.headerText}</h3>
+        )}
         <p class="usa-alert__text">{config.innerText}</p>
       </div>
     </div>
