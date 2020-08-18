@@ -1,22 +1,64 @@
 /**
  * JSX Tables Component Attributes
  * @function Tables
- * @param {Object} config The configuration object for table attributes
+ * @param {Object} config - The configuration object for table attributes
  * @property {string} config.name  - The name of the table.
  * @property {string} config.class - The classes inherited from the USWDS CSS files. The default class is `usa-table` and additions can be appended.
- * @property {Array} config.header - The array of data for the column header.
- * @property {Array} config.row    - The array string array to define each row and its corresponding cell.
+ * @property {Array} config.children - When this template is used to make a react component @babel/core will change "config" to "props" so that children components can be accessed.
  * @property {string} config.id    - The ID of the table
  * @example
  *   const config = {
  *     name: "Table",
  *     class: "usa-table--borderless",
- *     header: [
+ *     id: "813"
+ *   };
+ *   Tables(config)
+ * @returns {HTMLTableElement} The HTML Table
+ */
+exports.Tables = function (config) {
+  return (
+    <table id={`${config.tableID}`} class={`usa-table ${config.class}`}>
+      <caption>{config.caption}</caption>
+      {config.children}
+    </table>
+  );
+};
+
+/**
+ * @function TableHeader - function that returns HTML code for a table header
+ * @param {Object} config - configuration object for tables
+ * @property {Array} config.header - The array of data for the column header.
+ * @example
+ *  const config = {
+ *   header: [
  *       "Document title",
  *       "Description",
  *       "Year"
- *     ],
- *     row: [
+ *     ]
+ * }
+ * TableHeader(config);
+ * @returns {HTMLTableHeaderCellElement} - The HTML for the table header
+ */
+exports.TableHeader = function (config) {
+  let tableHeader = [];
+
+  for (let i = 0; i < config.header.length; i++) {
+    tableHeader.push(`<th scope='col'>${config.header[i]}</th>`);
+  }
+
+  return (
+    <thead>
+      <tr>{tableHeader.join("\n")}</tr>
+    </thead>
+  );
+};
+/**
+ * @function TableRow - function that returns HTML code for a table row
+ * @param {Object} config - configuration object for tables
+ * @property {Array} config.row - The 2D array of strings that define each row and cell within that row.
+ * @example
+ * const config = {
+ *  row: [
  *       [
  *         "Declaration of Independence",
  *         "Statement adopted by the...",
@@ -32,36 +74,12 @@
  *         "Row-n Column-2",
  *         "Row-n Column-3"
  *       ],
- *     ],
- *     id: "813"
- *   };
- *   Tables(config)
- * @returns {Tables} The Tables
+ *     ]
+ * };
+ * TableRow(config);
+ * @returns {HTMLTableRowElement} - The HTML for the table row
  */
-exports.Tables = function(config) {
-  return (
-    <table id={`${config.tableID}`} class={`usa-table ${config.class}`}>
-      <caption>{config.caption}</caption>
-      <thead>
-        <tr>{createHeader(config)}</tr>
-      </thead>
-      <tbody>{createRow(config)}</tbody>
-    </table>
-  );
-};
-
-// createHeader will generate the columns
-function createHeader(config) {
-  let tableHeader = [];
-
-  for (let i = 0; i < config.header.length; i++) {
-    tableHeader.push(`<th scope='col'>${config.header[i]}</th>`);
-  }
-
-  return tableHeader.join("\n");
-}
-// createRow will generate 1 or more rows depending on config specified
-function createRow(config) {
+exports.TableRow = function (config) {
   let tableData = [];
 
   for (let i = 0; i < config.row.length; i++) {
@@ -74,5 +92,5 @@ function createRow(config) {
     tableData.push("</tr>");
   }
 
-  return tableData.join("\n");
-}
+  return <tbody>{tableData.join("\n")}</tbody>;
+};
