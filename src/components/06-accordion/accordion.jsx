@@ -33,12 +33,12 @@
  *   Accordion(config);
  * @returns {Accordion} The Accordion
  */
-exports.Accordion = function (config) {
+exports.Accordion = function(config) {
   const variant = config.variant ? `usa-accordion--${config.variant}` : "";
   const itemArray = [];
 
   for (let i = 0; i < config.items.length; i += 1) {
-    itemArray.push(AccordionItem(config.id_prefix, config.items[i]));
+    itemArray.push(AccordionItem(config.items[i], config.id_prefix));
   }
 
   return (
@@ -50,42 +50,47 @@ exports.Accordion = function (config) {
     </div>
   );
 };
+
 /**
  * JSX Accordion Item Component Attributes
  * @function AccordionItem
+ * @param {Object} config - Configuration object containing all properties for an accordion item
  * @param {string} id_prefix - The ID prefix for the entire accordion
- * @param {Object} itemConfig - Configuration object containing all properties for an accordion item
- * @property {boolean} itemConfig.expanded  - The boolean that determines if the item is expanded
- * @property {string} itemConfig.id         - The ID of an item
- * @property {string} itemConfig.title      - The title of an item
- * @property {string} itemConfig.content    - The content of an item
+ * @property {boolean} config.expanded - The boolean that determines if the item is expanded
+ * @property {string} config.id        - The ID of an item
+ * @property {string} config.title     - The title of an item
+ * @property {string} config.content   - The content of an item
  * @example
- *    const itemConfig={
- *      expanded: false,
- *      id: "1",
- *      title: "Example",
- *      content: "This is just an example of what could be inside of an accordion item"
- * }
- * AccordionItem ("a", itemConfig);
+ *   const config = {
+ *     expanded: false,
+ *     id: "1",
+ *     title: "1st Amendment",
+ *     content: "Religion and Expression",
+ *   }
+ *   AccordionItem(config, "a");
  */
-exports.AccordionItem = function (id_prefix, itemConfig) {
+function AccordionItem(config, id_prefix) {
   return (
     <>
       <h2 class="usa-accordion__heading">
         <button
           class="usa-accordion__button"
-          aria-expanded={itemConfig.expanded}
-          aria-controls={`${id_prefix}${itemConfig.id}`}
+          aria-expanded={config.expanded}
+          aria-controls={`${id_prefix}${config.id}`}
         >
-          {itemConfig.title}
+          {config.title}
         </button>
       </h2>
       <div
-        id={`${id_prefix}${itemConfig.id}`}
+        id={`${id_prefix}${config.id}`}
         class="usa-accordion__content usa-prose"
       >
-        <p> {itemConfig.content}</p>
+        <p>{config.content}</p>
       </div>
     </>
   );
+}
+
+module.exports = {
+  AccordionItem
 };
