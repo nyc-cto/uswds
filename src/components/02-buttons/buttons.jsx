@@ -36,7 +36,7 @@
  *   }
  * @returns {HTMLButtonElement} The JSX HTML button
  */
-exports.Buttons = function (config) {
+exports.Button = function (config) {
   return (
     <button
       class={`usa-button ${config.class}`}
