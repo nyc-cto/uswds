@@ -1,23 +1,24 @@
 /**
- * JSX Tables Component Attributes
- * @function Tables
+ * JSX Table Component Attributes
+ * @function Table
  * @param {Object} config - The configuration object for table attributes
- * @property {string} config.name  - The name of the table.
+ * @property {string} [config.name]  - The name of the table. (Optional)
  * @property {string} config.class - The classes inherited from the USWDS CSS files. The default class is `usa-table` and additions can be appended.
+ * @property {string} config.id    - The ID of the table.
+ * @property {string} [config.caption] - Title to be displayed above table. (Optional)
  * @property {Array} config.children - When this template is used to make a react component @babel/core will change "config" to "props" so that children components can be accessed.
- * @property {string} config.id    - The ID of the table
  * @example
  *   const config = {
  *     name: "Table",
  *     class: "usa-table--borderless",
  *     id: "813"
  *   };
- *   Tables(config)
+ *   Table(config)
  * @returns {HTMLTableElement} The HTML Table
  */
-exports.Tables = function (config) {
+exports.Table = function (config) {
   return (
-    <table id={`${config.tableID}`} class={`usa-table ${config.class}`}>
+    <table id={`${config.id}`} class={`usa-table ${config.class}`}>
       <caption>{config.caption}</caption>
       {config.children}
     </table>
@@ -55,7 +56,7 @@ exports.TableHeader = function (config) {
 
   for (let i = 0; i < config.header.length; i++) {
     tableHeader.push(
-      `<th class='${config.header[i].text}' scope='col'>${config.header[i].text}</th>`
+      `<th class='${config.header[i].class}' scope='col'>${config.header[i].text}</th>`
     );
   }
 
@@ -89,7 +90,7 @@ exports.TableRow = function (config) {
   );
 
   for (let i = 1; i < config.row.length; i++) {
-    tableData.push(`<td>${config.row[i]}</td>`);
+    tableData.push(`<td>${config.data[i]}</td>`);
   }
 
   return <tr>{tableData.join("\n")}</tr>;
