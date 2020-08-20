@@ -55,42 +55,28 @@ exports.TableHeader = function (config) {
 /**
  * @function TableRow - function that returns HTML code for a table row
  * @param {Object} config - configuration object for tables
- * @property {Array} config.row - The 2D array of strings that define each row and cell within that row.
+ * @property {Array} config.row - The array of strings that define each cell within a row.
  * @example
  * const config = {
- *  row: [
+ *  row:
  *       [
  *         "Declaration of Independence",
  *         "Statement adopted by the...",
  *         "1776",
- *       ],
- *       [
- *         "Bill of Rights",
- *         "The first ten amendments of the U.S...",
- *         "1791"
- *       ],
- *       [
- *         "Row-n Column-1",
- *         "Row-n Column-2",
- *         "Row-n Column-3"
- *       ],
- *     ]
+ *       ]
  * };
  * TableRow(config);
  * @returns {HTMLTableRowElement} - The HTML for the table row
  */
 exports.TableRow = function (config) {
   let tableData = [];
+  tableData.push("<th scope='row'>");
 
   for (let i = 0; i < config.row.length; i++) {
-    tableData.push("<tr>", `<th scope='row'>${config.row[i][0]}</th>`);
-
-    for (let j = 1; j < config.row[i].length; j++) {
-      tableData.push(`<td>${config.row[i][j]}</td>`);
-    }
-
-    tableData.push("</tr>");
+    tableData.push(`<td>${config.row[i]}</td>`);
   }
+
+  tableData.push("</th>");
 
   return <tbody>{tableData.join("\n")}</tbody>;
 };
