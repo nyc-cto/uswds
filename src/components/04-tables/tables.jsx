@@ -27,23 +27,36 @@ exports.Tables = function (config) {
 /**
  * @function TableHeader - function that returns HTML code for a table header
  * @param {Object} config - configuration object for tables
- * @property {Array} config.header - The array of data for the column header.
+ * @property {Array} config.header - The array of objects that contain data for the column header
+ * @property {string} config.header.text - Text to be placed in the table header cell
+ * @property {string} [config.header.class] - Additional class to be placed into <th> element (Optional)
  * @example
  *  const config = {
  *   header: [
- *       "Document title",
- *       "Description",
- *       "Year"
+ *       {
+ *        text: "Document title",
+ *        class: ""
+ *       },
+ *       {
+ *        text: "Description",
+ *        class: ""
+ *       },
+ *       {
+ *        text: "Year",
+ *        class: ""
+ *       }
  *     ]
  * }
  * TableHeader(config);
- * @returns {HTMLTableHeaderCellElement} - The HTML for the table header
+ * @returns {HTMLTableHeaderElement} - The HTML for the table header
  */
 exports.TableHeader = function (config) {
   let tableHeader = [];
 
   for (let i = 0; i < config.header.length; i++) {
-    tableHeader.push(`<th scope='col'>${config.header[i]}</th>`);
+    tableHeader.push(
+      `<th class='${config.header[i].text}' scope='col'>${config.header[i].text}</th>`
+    );
   }
 
   return (
@@ -55,11 +68,12 @@ exports.TableHeader = function (config) {
 /**
  * @function TableRow - function that returns HTML code for a table row
  * @param {Object} config - configuration object for tables
- * @property {Array} config.row - The array of strings that define each cell within a row.
+ * @property {string} [config.class] - Class that can be added into <th> element (Optional)
+ * @property {Array} config.data - The array of strings that define each cell within a row.
  * @example
  * const config = {
- *  row:
- *       [
+ *  class: ""
+ *  data: [
  *         "Declaration of Independence",
  *         "Statement adopted by the...",
  *         "1776",
@@ -70,13 +84,13 @@ exports.TableHeader = function (config) {
  */
 exports.TableRow = function (config) {
   let tableData = [];
-  tableData.push("<th scope='row'>");
+  tableData.push(
+    `<th class='${config.class}' scope='row'>${config.data[0]}</th>`
+  );
 
-  for (let i = 0; i < config.row.length; i++) {
+  for (let i = 1; i < config.row.length; i++) {
     tableData.push(`<td>${config.row[i]}</td>`);
   }
 
-  tableData.push("</th>");
-
-  return <tbody>{tableData.join("\n")}</tbody>;
+  return <tr>{tableData.join("\n")}</tr>;
 };
