@@ -69,7 +69,7 @@ exports.Accordion = function(config) {
  *   }
  *   AccordionItem(config, "a");
  */
-function AccordionItem(config, id_prefix) {
+exports.AccordionItem = function(config, id_prefix) {
   return (
     <>
       <h2 class="usa-accordion__heading">
@@ -89,8 +89,4 @@ function AccordionItem(config, id_prefix) {
       </div>
     </>
   );
-}
-
-module.exports = {
-  AccordionItem
 };
