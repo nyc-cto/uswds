@@ -1,4 +1,11 @@
-# Forked as part of the [nyc-cto/uswds-generator project](https://github.com/nyc-cto/USWDS-generator)
+# NOTE 
+
+This is a forked copy of USWDS, used as part of the [nyc-cto/uswds-generator project](https://github.com/nyc-cto/USWDS-generator)  
+<br/>
+<br/>
+***
+<br/>
+<br/>
 
 # United States Web Design System
 
